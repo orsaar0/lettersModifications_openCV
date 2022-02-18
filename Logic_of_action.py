@@ -12,7 +12,7 @@ def main():
     cv.imshow('bet1', bet)
     erosion()
     dilation()
-
+    #e
     #fat_word()
     # cv.imshow('bet', bet)
     # waves()

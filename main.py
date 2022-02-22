@@ -7,7 +7,6 @@ import os
 
 # https://www.youtube.com/watch?v=YXPyB4XeYLA&ab_channel=freeCodeCamp.org
 def main():
-    print("niv hamagniv")
     # bet = cv.imread('bet.jpg')
     # cv.imshow('bet', bet)
     root = tk.Tk()

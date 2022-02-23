@@ -16,7 +16,7 @@ class Mirror:
         self.image = image
         self.mirroring_window_title = 'Mirror'
 
-    def startMir(self):
+    def start(self):
         cv.namedWindow(self.mirroring_window_title)
         cv.createTrackbar('axis', self.mirroring_window_title, 0, 2,
                           self.mirror)

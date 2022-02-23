@@ -7,6 +7,7 @@ from scipy.interpolate import make_interp_spline
 from DilationOrErosion import DilationOrErosion
 from Waves import Waves
 from Mirror import Mirror
+from Blur import Blur
 
 
 def main():
@@ -21,10 +22,10 @@ def main():
     # inverted()
     # erosion()
     # dilation()
-    waves()
+    # waves()
     # mirroring()
     # rotate()
-    # blurring()
+    blurring()
 
 
 def resize():
@@ -124,65 +125,41 @@ def waves():
 
 def mirroring():
     mirror = Mirror(image=image)
-    mirror.startMir()
-    # # cv.imshow('fliped',ImageOps.mirror(bet))
-    #
-    # img = image
-    # # Mirror in x direction (flip horizontally)
-    # while True:
-    #     pick_flip = input(
-    #         "pick flip: \n 0\tflip horizontally\n 1\tflip vertically\n 2\tflip horizontally and vertically\n")
-    #     if pick_flip == '0':
-    #         imgX = np.flip(image, axis=1)
-    #         cv.imshow('imgX', imgX)
-    #         cv.waitKey(0)
-    #         break
-    #     # Mirror in y direction (flip vertically)
-    #     elif pick_flip == '1':
-    #         imgY = np.flip(image, axis=0)
-    #         cv.imshow('imgY', imgY)
-    #         cv.waitKey(0)
-    #         break
-    #     # Mirror in both directions (flip horizontally and vertically)
-    #     elif pick_flip == '2':
-    #         imgXY = np.flip(image, axis=(0, 1))
-    #         cv.imshow('imgXY', imgXY)
-    #         cv.waitKey(0)
-    #         break
-    #     else:
-    #         print("smart guy? try again")
+    mirror.start()
 
 
 def blurring():
-    while True:
-        how_much_blur = input("0\t tiny blur\n1\t little blur\n2\t medium blur\n3\t big blur\n4\t mega blur\n ")
-        if how_much_blur == '0':
-            blur = cv.GaussianBlur(image, (3, 3), cv.BORDER_DEFAULT)
-            cv.imshow('Blur letter', blur)
-            cv.waitKey(0)
-            break
-        elif how_much_blur == '1':
-            blur = cv.GaussianBlur(image, (5, 5), cv.BORDER_DEFAULT)
-            cv.imshow('Blur letter', blur)
-            cv.waitKey(0)
-            break
-        elif how_much_blur == '2':
-            blur = cv.GaussianBlur(image, (7, 7), cv.BORDER_DEFAULT)
-            cv.imshow('Blur letter', blur)
-            cv.waitKey(0)
-            break
-        elif how_much_blur == '3':
-            blur = cv.GaussianBlur(image, (11, 11), cv.BORDER_DEFAULT)
-            cv.imshow('Blur letter', blur)
-            cv.waitKey(0)
-            break
-        elif how_much_blur == '4':
-            blur = cv.GaussianBlur(image, (15, 15), cv.BORDER_DEFAULT)
-            cv.imshow('Blur letter', blur)
-            cv.waitKey(0)
-            break
-        else:
-            print("smart guy ha?")
+    blur = Blur(image)
+    blur.start()
+    # while True:
+    #     how_much_blur = input("0\t tiny blur\n1\t little blur\n2\t medium blur\n3\t big blur\n4\t mega blur\n ")
+    #     if how_much_blur == '0':
+    #         blur = cv.GaussianBlur(image, (3, 3), cv.BORDER_DEFAULT)
+    #         cv.imshow('Blur letter', blur)
+    #         cv.waitKey(0)
+    #         break
+    #     elif how_much_blur == '1':
+    #         blur = cv.GaussianBlur(image, (5, 5), cv.BORDER_DEFAULT)
+    #         cv.imshow('Blur letter', blur)
+    #         cv.waitKey(0)
+    #         break
+    #     elif how_much_blur == '2':
+    #         blur = cv.GaussianBlur(image, (7, 7), cv.BORDER_DEFAULT)
+    #         cv.imshow('Blur letter', blur)
+    #         cv.waitKey(0)
+    #         break
+    #     elif how_much_blur == '3':
+    #         blur = cv.GaussianBlur(image, (11, 11), cv.BORDER_DEFAULT)
+    #         cv.imshow('Blur letter', blur)
+    #         cv.waitKey(0)
+    #         break
+    #     elif how_much_blur == '4':
+    #         blur = cv.GaussianBlur(image, (15, 15), cv.BORDER_DEFAULT)
+    #         cv.imshow('Blur letter', blur)
+    #         cv.waitKey(0)
+    #         break
+    #     else:
+    #         print("smart guy ha?")
 
 
 def vertical_wave():

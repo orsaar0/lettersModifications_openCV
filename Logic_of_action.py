@@ -1,9 +1,9 @@
 import cv2.cv2 as cv
-from DilationOrErosion import DilationOrErosion
-from Waves import Waves
-from Mirror import Mirror
-from Blur import Blur
-from Rotate import Rotate
+from lettersModifications_openCV.operations_classes.DilationOrErosion import DilationOrErosion
+from lettersModifications_openCV.operations_classes.Waves import Waves
+from lettersModifications_openCV.operations_classes.Mirror import Mirror
+from lettersModifications_openCV.operations_classes.Blur import Blur
+from lettersModifications_openCV.operations_classes.Rotate import Rotate
 
 
 

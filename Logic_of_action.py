@@ -5,11 +5,12 @@ import math
 import matplotlib.pyplot as plt
 from scipy.interpolate import make_interp_spline
 from DilationOrErosion import DilationOrErosion
+from Waves import Waves
 
 
 def main():
     global image, height, width
-    image = cv.imread('Alef_bet_images/words2.jpg')
+    image = cv.imread('Alef_bet_images/Words.jpg')
     image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     # resize()
     height = image.shape[0]
@@ -19,7 +20,7 @@ def main():
     # inverted()
     # erosion()
     # dilation()
-    # waves()
+    waves()
     # mirroring()
     # rotate()
     # blurring()
@@ -49,48 +50,49 @@ def inverted():
 
 
 def rounding_corners():
-    maxCorners = 10
-    # Parameters for Shi-Tomasi algorithm
-    qualityLevel = 0.1
-    minDistance = 10
-    blockSize = 3
-    gradientSize = 3
-    useHarrisDetector = True
-    k = 0.04
-    corners = cv.goodFeaturesToTrack(image, maxCorners, qualityLevel, minDistance, None, \
-                                     blockSize=blockSize, gradientSize=gradientSize,
-                                     useHarrisDetector=useHarrisDetector, k=k)
-    x = []
-    y = []
-    for j in corners.shape[0]:
-        for i in corners[j]:
-            # for (j, k) in corners[]
-            x.append(i[0])
-            y.append(i[1])
-    X = np.array(x)
-    Y = np.array(y)
-    X_Y_Spline = make_interp_spline(x, y)
-
-    # Returns evenly spaced numbers
-    # over a specified interval.
-    X_ = np.linspace(x.min(), x.max(), 500)
-    Y_ = X_Y_Spline(X_)
-
-    # Plotting the Graph
-    plt.plot(X_, Y_)
-    plt.title("Plot Smooth Curve Using the scipy.interpolate.make_interp_spline() Class")
-    plt.xlabel("X")
-    plt.ylabel("Y")
-    plt.show()
-
-    # radius = 5
-    # for i in range(corners.shape[0]):
-    #     print("corner indices: ", str(corners[i, 0, 0]), str(corners[i, 0, 1]))
-    #     image[int(corners[i, 0, 1]), int(corners[i, 0, 0])] = 255
-    #     cv.circle(image, (int(corners[i, 0, 0]), int(corners[i, 0, 1])), radius,
-    #               (256, 256, 256), cv.FILLED)
-    cv.imshow('rounded corners', image)
-    cv.waitKey(0)
+    pass
+    # maxCorners = 10
+    # # Parameters for Shi-Tomasi algorithm
+    # qualityLevel = 0.1
+    # minDistance = 10
+    # blockSize = 3
+    # gradientSize = 3
+    # useHarrisDetector = True
+    # k = 0.04
+    # corners = cv.goodFeaturesToTrack(image, maxCorners, qualityLevel, minDistance, None, \
+    #                                  blockSize=blockSize, gradientSize=gradientSize,
+    #                                  useHarrisDetector=useHarrisDetector, k=k)
+    # x = []
+    # y = []
+    # for j in corners.shape[0]:
+    #     for i in corners[j]:
+    #         # for (j, k) in corners[]
+    #         x.append(i[0])
+    #         y.append(i[1])
+    # X = np.array(x)
+    # Y = np.array(y)
+    # X_Y_Spline = make_interp_spline(x, y)
+    #
+    # # Returns evenly spaced numbers
+    # # over a specified interval.
+    # X_ = np.linspace(x.min(), x.max(), 500)
+    # Y_ = X_Y_Spline(X_)
+    #
+    # # Plotting the Graph
+    # plt.plot(X_, Y_)
+    # plt.title("Plot Smooth Curve Using the scipy.interpolate.make_interp_spline() Class")
+    # plt.xlabel("X")
+    # plt.ylabel("Y")
+    # plt.show()
+    #
+    # # radius = 5
+    # # for i in range(corners.shape[0]):
+    # #     print("corner indices: ", str(corners[i, 0, 0]), str(corners[i, 0, 1]))
+    # #     image[int(corners[i, 0, 1]), int(corners[i, 0, 0])] = 255
+    # #     cv.circle(image, (int(corners[i, 0, 0]), int(corners[i, 0, 1])), radius,
+    # #               (256, 256, 256), cv.FILLED)
+    # cv.imshow('rounded corners', image)
+    # cv.waitKey(0)
 
 
 def dilation():
@@ -104,17 +106,18 @@ def erosion():
 
 
 def waves():
+    wave = Waves(image)
     while True:
         pick_wave = input(
             "pick wave: \n 0\tvertical wave\n 1\thorizontally wave\n 2\thorizontally and vertically wave\n")
         if pick_wave == '0':
-            vertical_wave()
+            wave.startVertical()
             break
         elif pick_wave == '1':
-            horizontal_wave()
+            wave.startHorizontal()
             break
         elif pick_wave == '2':
-            both_waves()
+            wave.startBoth()
             break
 
 
@@ -191,7 +194,7 @@ def vertical_wave():
             if j + offset_x < height:
                 img_output[i, j] = image[i, (j + offset_x) % width]
             else:
-                img_output[i, j] = 0
+                img_output[i, j] = 255
     cv.imshow('Vertical wave', img_output)
     cv.waitKey(0)
 

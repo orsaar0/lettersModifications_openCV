@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import make_interp_spline
 from DilationOrErosion import DilationOrErosion
 from Waves import Waves
+from Mirror import Mirror
 
 
 def main():
@@ -96,12 +97,12 @@ def rounding_corners():
 
 
 def dilation():
-    dilt = DilationOrErosion(image)
+    dilt = DilationOrErosion(src=image)
     dilt.startDel()
 
 
 def erosion():
-    dilt = DilationOrErosion(image)
+    dilt = DilationOrErosion(src=image)
     dilt.startEro()
 
 
@@ -122,35 +123,34 @@ def waves():
 
 
 def mirroring():
-    # cv.imshow('fliped',ImageOps.mirror(bet))
-
-    img = image
-    # Mirror in x direction (flip horizontally)
-    while True:
-        pick_flip = input(
-            "pick flip: \n 0\tflip horizontally\n 1\tflip vertically\n 2\tflip horizontally and vertically\n")
-        if pick_flip == '0':
-            imgX = np.flip(image, axis=1)
-            imgX = img[:, ::-1, :]
-            cv.imshow('imgX', imgX)
-            cv.waitKey(0)
-            break
-        # Mirror in y direction (flip vertically)
-        elif pick_flip == '1':
-            imgY = np.flip(image, axis=0)
-            imgY = img[::-1, :, :]
-            cv.imshow('imgY', imgY)
-            cv.waitKey(0)
-            break
-        # Mirror in both directions (flip horizontally and vertically)
-        elif pick_flip == '2':
-            imgXY = np.flip(image, axis=(0, 1))
-            imgXY = img[::-1, ::-1, :]
-            cv.imshow('imgXY', imgXY)
-            cv.waitKey(0)
-            break
-        else:
-            print("smart guy? try again")
+    mirror = Mirror(image=image)
+    mirror.startMir()
+    # # cv.imshow('fliped',ImageOps.mirror(bet))
+    #
+    # img = image
+    # # Mirror in x direction (flip horizontally)
+    # while True:
+    #     pick_flip = input(
+    #         "pick flip: \n 0\tflip horizontally\n 1\tflip vertically\n 2\tflip horizontally and vertically\n")
+    #     if pick_flip == '0':
+    #         imgX = np.flip(image, axis=1)
+    #         cv.imshow('imgX', imgX)
+    #         cv.waitKey(0)
+    #         break
+    #     # Mirror in y direction (flip vertically)
+    #     elif pick_flip == '1':
+    #         imgY = np.flip(image, axis=0)
+    #         cv.imshow('imgY', imgY)
+    #         cv.waitKey(0)
+    #         break
+    #     # Mirror in both directions (flip horizontally and vertically)
+    #     elif pick_flip == '2':
+    #         imgXY = np.flip(image, axis=(0, 1))
+    #         cv.imshow('imgXY', imgXY)
+    #         cv.waitKey(0)
+    #         break
+    #     else:
+    #         print("smart guy? try again")
 
 
 def blurring():

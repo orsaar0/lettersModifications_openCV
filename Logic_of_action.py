@@ -6,14 +6,13 @@ import math
 
 def main():
     global img, bet, rows, cols, kuf
-    bet = cv.imread('bet.jpg')
-    kuf = cv.imread('kuf.jpg')
+    bet = cv.imread('Alef_bet_images/bet.jpg')
+    kuf = cv.imread('Alef_bet_images/kuf.jpg')
     rows, cols, _ = bet.shape
-    cv.imshow('bet1', bet)
-    erosion()
-    dilation()
-    #e
-    #fat_word()
+    cv.imshow('kuf1', kuf)
+
+    #erosion()
+    #dilation()
     # cv.imshow('bet', bet)
     # waves()
     # mirroring()
@@ -54,13 +53,13 @@ def fat_word():
 
 def erosion():
     kernel = np.ones((5, 5), np.uint8)
-    img_erosion = cv.erode(bet, kernel, iterations=1)
+    img_erosion = cv.erode(kuf, kernel, iterations=1)
     cv.imshow('Erosion', img_erosion)
     cv.waitKey(0)
 
 def dilation():
     kernel = np.ones((5, 5), np.uint8)
-    img_dilation = cv.dilate(bet, kernel, iterations=1)
+    img_dilation = cv.dilate(kuf, kernel, iterations=1)
     cv.imshow('Dilation', img_dilation)
     cv.waitKey(0)
 
@@ -83,7 +82,7 @@ def waves():
 def mirroring():
     # cv.imshow('fliped',ImageOps.mirror(bet))
 
-    img = bet
+    #img = bet
     # Mirror in x direction (flip horizontally)
     while True:
         pick_flip = input(

@@ -16,7 +16,7 @@ class DilationOrErosion:
         self.src = src
         self.erosion_size = 0
         self.max_elem = 2
-        self.max_kernel_size = 21
+        self.max_kernel_size = 15
         self.title_trackbar_element_shape = 'Element:\n 0: Rect \n 1: Cross \n 2: Ellipse'
         self.title_trackbar_kernel_size = 'Kernel size:\n 2n +1'
         self.title_dilation_window = 'Dilation Demo'

@@ -1,13 +1,10 @@
 import cv2.cv2 as cv
-import numpy as np
-import os
-import math
-import matplotlib.pyplot as plt
-from scipy.interpolate import make_interp_spline
 from DilationOrErosion import DilationOrErosion
 from Waves import Waves
 from Mirror import Mirror
 from Blur import Blur
+from Rotate import Rotate
+
 
 
 def main():
@@ -24,8 +21,8 @@ def main():
     # dilation()
     # waves()
     # mirroring()
-    # rotate()
-    blurring()
+    rotate()
+    # blurring()
 
 
 def resize():
@@ -37,12 +34,8 @@ def resize():
 
 
 def rotate():
-    rotate_degrees = input("rotate degrees optins are:(1-360) ")
-    height, width = image.shape[:2]
-    rotation_matrix = cv.getRotationMatrix2D((width / 2, height / 2), int(rotate_degrees) % 360, 1)
-    rotated_image = cv.warpAffine(image, rotation_matrix, (width, height))
-    cv.imshow('rotated', rotated_image)
-    cv.waitKey(0)
+    rotate = Rotate(image=image)
+    rotate.start()
 
 
 def inverted():
@@ -131,78 +124,6 @@ def mirroring():
 def blurring():
     blur = Blur(image)
     blur.start()
-    # while True:
-    #     how_much_blur = input("0\t tiny blur\n1\t little blur\n2\t medium blur\n3\t big blur\n4\t mega blur\n ")
-    #     if how_much_blur == '0':
-    #         blur = cv.GaussianBlur(image, (3, 3), cv.BORDER_DEFAULT)
-    #         cv.imshow('Blur letter', blur)
-    #         cv.waitKey(0)
-    #         break
-    #     elif how_much_blur == '1':
-    #         blur = cv.GaussianBlur(image, (5, 5), cv.BORDER_DEFAULT)
-    #         cv.imshow('Blur letter', blur)
-    #         cv.waitKey(0)
-    #         break
-    #     elif how_much_blur == '2':
-    #         blur = cv.GaussianBlur(image, (7, 7), cv.BORDER_DEFAULT)
-    #         cv.imshow('Blur letter', blur)
-    #         cv.waitKey(0)
-    #         break
-    #     elif how_much_blur == '3':
-    #         blur = cv.GaussianBlur(image, (11, 11), cv.BORDER_DEFAULT)
-    #         cv.imshow('Blur letter', blur)
-    #         cv.waitKey(0)
-    #         break
-    #     elif how_much_blur == '4':
-    #         blur = cv.GaussianBlur(image, (15, 15), cv.BORDER_DEFAULT)
-    #         cv.imshow('Blur letter', blur)
-    #         cv.waitKey(0)
-    #         break
-    #     else:
-    #         print("smart guy ha?")
-
-
-def vertical_wave():
-    img_output = np.zeros(image.shape, dtype=image.dtype)
-    for i in range(height):
-        for j in range(width):
-            offset_x = int(25.0 * math.sin(2 * 3.14 * i / 180))
-            offset_y = 0
-            if j + offset_x < height:
-                img_output[i, j] = image[i, (j + offset_x) % width]
-            else:
-                img_output[i, j] = 255
-    cv.imshow('Vertical wave', img_output)
-    cv.waitKey(0)
-
-
-def horizontal_wave():
-    img_output = np.zeros(image.shape, dtype=image.dtype)
-    for i in range(height):
-        for j in range(width):
-            offset_x = 0
-            offset_y = int(16.0 * math.sin(2 * 3.14 * j / 150))
-            if i + offset_y < height:
-                img_output[i, j] = image[(i + offset_y) % height, j]
-            else:
-                img_output[i, j] = 0
-    cv.imshow('Horizontal wave', img_output)
-    cv.waitKey(0)
-
-
-def both_waves():
-    img_output = np.zeros(image.shape, dtype=image.dtype)
-
-    for i in range(height):
-        for j in range(width):
-            offset_x = int(20.0 * math.sin(2 * 3.14 * i / 150))
-            offset_y = int(20.0 * math.cos(2 * 3.14 * j / 150))
-            if i + offset_y < height and j + offset_x < width:
-                img_output[i, j] = image[(i + offset_y) % height, (j + offset_x) % width]
-            else:
-                img_output[i, j] = 0
-    cv.imshow('Multidirectional wave', img_output)
-    cv.waitKey(0)
 
 
 if __name__ == '__main__':

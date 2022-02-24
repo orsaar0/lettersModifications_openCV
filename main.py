@@ -1,19 +1,10 @@
 import tkinter as tk
-import cv2.cv2 as cv
 from tkinter_custom_button import TkinterCustomButton
-import numpy as np
-import math
-import os
 from Logic_of_action import Actions
-
-import Logic_of_action
-
-
-# https://www.youtube.com/watch?v=YXPyB4XeYLA&ab_channel=freeCodeCamp.org
 
 
 def main():
-    global root, img_path_entry, img, action
+    global action
     action = Actions('Alef_bet_images/Alef.jpg')
 
     root = tk.Tk()
@@ -38,19 +29,21 @@ def main():
     clicked = tk.StringVar(root)
     clicked.set("Click To Pick")
     letter_menu = tk.OptionMenu(root, clicked, *options.keys())
-    letter_menu.place(x=0, y=100)
+    letter_menu.config(bg="WHITE", fg="WHITE")
+    letter_menu["menu"].config(bg="WHITE")
+    letter_menu.place(x=400, y=100)
 
     def check_picked_letter(*args):
-        global img_path_entry, action
+        global action
         for i, j in options.items():
             if i == clicked.get():
                 action.url_setter(j)
-                img_path_entry = j
+                # img_path_entry = j
                 break
 
     clicked.trace('w', check_picked_letter)
-    img_path_entry = tk.Entry()
-    img_path_entry.focus_set()
+    # img_path_entry = tk.Entry()
+    # img_path_entry.focus_set()
 
     b_mirror_button = TkinterCustomButton(text="Mirror", corner_radius=0, command=action.mirroring)
     b_tilt_button = TkinterCustomButton(text="Tilt", corner_radius=0, command=click)

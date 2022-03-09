@@ -29,9 +29,9 @@ def main():
     clicked = tk.StringVar(root)
     clicked.set("Click To Pick")
     letter_menu = tk.OptionMenu(root, clicked, *options.keys())
-    letter_menu.config(bg="WHITE", fg="WHITE")
+    letter_menu.config(bg="GRAY", fg="WHITE", width=30, height=2)
     letter_menu["menu"].config(bg="WHITE")
-    letter_menu.place(x=400, y=100)
+    letter_menu.place(x=350, y=150)
 
     def check_picked_letter(*args):
         global action

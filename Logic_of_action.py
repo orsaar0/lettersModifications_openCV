@@ -4,6 +4,7 @@ from lettersModifications_openCV.operations_classes.Waves import Waves
 from lettersModifications_openCV.operations_classes.Mirror import Mirror
 from lettersModifications_openCV.operations_classes.Blur import Blur
 from lettersModifications_openCV.operations_classes.Rotate import Rotate
+from lettersModifications_openCV.operations_classes.Tilt import Tilt
 
 
 class Actions:
@@ -40,18 +41,7 @@ class Actions:
 
     def waves(self):
         wave = Waves(self.image)
-        while True:
-            pick_wave = input(
-                "pick wave: \n 0\tvertical wave\n 1\thorizontally wave\n 2\thorizontally and vertically wave\n")
-            if pick_wave == '0':
-                wave.startVertical()
-                break
-            elif pick_wave == '1':
-                wave.startHorizontal()
-                break
-            elif pick_wave == '2':
-                wave.startBoth()
-                break
+        wave.start()
 
     def mirroring(self):
         mirror = Mirror(image=self.image)
@@ -60,3 +50,7 @@ class Actions:
     def blurring(self):
         blur = Blur(self.image)
         blur.start()
+
+    def tilt(self):
+        tilt = Tilt(self.image)
+        tilt.start()

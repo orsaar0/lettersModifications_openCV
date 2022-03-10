@@ -15,6 +15,7 @@ class Actions:
     def url_setter(self, url):
         self.image = cv.imread(url)
         self.resize()
+        cv.imshow('Original', self.image)
 
     def resize(self):
         self.image = cv.resize(self.image, (500, 500))
@@ -23,13 +24,10 @@ class Actions:
         rotate = Rotate(image=self.image)
         rotate.start()
 
-    def inverted(self):
-        ret, thresh = cv.threshold(self.image, 120, 255, cv.THRESH_BINARY_INV)
-        cv.imshow('Binary Threshold Inverted', thresh)
-        cv.waitKey(0)
-
-    def rounding_corners(self):
-        pass
+    # def inverted(self):
+    #     ret, thresh = cv.threshold(self.image, 120, 255, cv.THRESH_BINARY_INV)
+    #     cv.imshow('Binary Threshold Inverted', thresh)
+    #     cv.waitKey(0)
 
     def dilation(self):
         dilt = DilationOrErosion(src=self.image)

@@ -9,6 +9,7 @@ def main():
 
     root = tk.Tk()
     root.geometry("900x600")
+    root.title('Letters Modifications')
 
     backgrounding = tk.PhotoImage(file="beautiful_Gui/image.png")
     label = tk.Label(root, image=backgrounding)
@@ -31,39 +32,32 @@ def main():
     letter_menu = tk.OptionMenu(root, clicked, *options.keys())
     letter_menu.config(bg="GRAY", fg="WHITE", width=30, height=2)
     letter_menu["menu"].config(bg="WHITE")
-    letter_menu.place(x=350, y=150)
+    letter_menu.place(x=180, y=170)
 
     def check_picked_letter(*args):
         global action
         for i, j in options.items():
             if i == clicked.get():
                 action.url_setter(j)
-                # img_path_entry = j
                 break
 
     clicked.trace('w', check_picked_letter)
-    # img_path_entry = tk.Entry()
-    # img_path_entry.focus_set()
 
     b_mirror_button = TkinterCustomButton(text="Mirror", corner_radius=0, command=action.mirroring)
     b_tilt_button = TkinterCustomButton(text="Tilt", corner_radius=0, command=action.tilt)
-    # b_round_button = TkinterCustomButton(text="Round", corner_radius=0, command=click)
-    # b_stretch_button = TkinterCustomButton(text="Stretch", corner_radius=0, command=click)
     b_blurring_button = TkinterCustomButton(text="Blur", corner_radius=0, command=action.blurring)
     b_waves_button = TkinterCustomButton(text="Waves", corner_radius=0, command=action.waves)
     b_rotate_button = TkinterCustomButton(text="Rotate", corner_radius=0, command=action.rotate)
     b_erosion_button = TkinterCustomButton(text="Erosion", corner_radius=0, command=action.erosion)
     b_dilation_button = TkinterCustomButton(text="Dilation", corner_radius=0, command=action.dilation)
 
-    b_mirror_button.place(x=100, y=300)
-    b_tilt_button.place(x=250, y=400)
-    # b_round_button.place(x=300, y=300)
-    # b_stretch_button.place(x=400, y=400)
-    b_blurring_button.place(x=400, y=300)
-    b_waves_button.place(x=550, y=400)
-    b_rotate_button.place(x=700, y=300)
-    b_erosion_button.place(x=300, y=500)
-    b_dilation_button.place(x=500, y=500)
+    b_mirror_button.place(x=150, y=300)
+    b_tilt_button.place(x=80, y=400)
+    b_blurring_button.place(x=320, y=300)
+    b_waves_button.place(x=240, y=400)
+    b_rotate_button.place(x=400, y=400)
+    b_erosion_button.place(x=150, y=500)
+    b_dilation_button.place(x=320, y=500)
 
     root.mainloop()
 

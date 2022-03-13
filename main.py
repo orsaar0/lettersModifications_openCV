@@ -1,3 +1,8 @@
+# SUBMITTED: 
+# NIV DAGAN 205438203 
+# OR SAAR 205476369
+
+
 import tkinter as tk
 from tkinter_custom_button import TkinterCustomButton
 from Logic_of_action import Actions

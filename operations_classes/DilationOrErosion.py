@@ -31,6 +31,17 @@ class DilationOrErosion:
         self.dilatation(0)
         cv.waitKey(0)
 
+    def startEro(self):
+        cv.namedWindow(self.title_erosion_window)
+        cv.createTrackbar(self.title_trackbar_element_shape, self.title_erosion_window, 0, self.max_elem, self.erosion)
+        cv.createTrackbar(self.title_trackbar_kernel_size, self.title_erosion_window, 0, self.max_kernel_size, self.erosion)
+
+        self.erosion(0)
+        cv.waitKey(0)
+
+    # The kernel we pass to dilate() is used to perform the operation.
+    # We specified its shape by using the function cv::getStructuringElement
+    # dilate() computes a local maximum over the area of given kernel.
     def dilatation(self, val):
         dilatation_size = cv.getTrackbarPos(self.title_trackbar_kernel_size, self.title_dilation_window)
         dilation_shape = morph_shape(
@@ -40,14 +51,9 @@ class DilationOrErosion:
         dilatation_dst = cv.dilate(self.src, element)
         cv.imshow(self.title_dilation_window, dilatation_dst)
 
-    def startEro(self):
-        cv.namedWindow(self.title_erosion_window)
-        cv.createTrackbar(self.title_trackbar_element_shape, self.title_erosion_window, 0, self.max_elem, self.erosion)
-        cv.createTrackbar(self.title_trackbar_kernel_size, self.title_erosion_window, 0, self.max_kernel_size, self.erosion)
-
-        self.erosion(0)
-        cv.waitKey(0)
-
+    # The kernel we pass to erode() is used to perform the operation.
+    # We specified its shape by using the function cv::getStructuringElement
+    # erode() computes a local minimum over the area of given kernel.
     def erosion(self, val):
         erosion_size = cv.getTrackbarPos(self.title_trackbar_kernel_size, self.title_erosion_window)
         erosion_shape = morph_shape(cv.getTrackbarPos(self.title_trackbar_element_shape, self.title_erosion_window))

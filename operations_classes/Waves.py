@@ -12,6 +12,7 @@ class Waves:
         self.horizontal_window_title = 'Horizontal'
         self.both_window_title = 'Both Horizontal & Vertical'
 
+    # Here we perform geometric transformation - moving each pixel to a new position in the output image
     def start(self):
         self.startVertical()
         self.startHorizontal()
@@ -23,7 +24,18 @@ class Waves:
         cv.createTrackbar('value', self.vertical_window_title, 0, 25,
                           self.vertical)
         self.vertical(0)
-        # cv.waitKey(0)
+
+    def startHorizontal(self):
+        cv.namedWindow(self.horizontal_window_title)
+        cv.createTrackbar('value', self.horizontal_window_title, 0, 16,
+                          self.horizontal)
+        self.horizontal(0)
+
+    def startBoth(self):
+        cv.namedWindow(self.both_window_title)
+        cv.createTrackbar('value', self.both_window_title, 0, 20,
+                          self.both)
+        self.both(0)
 
     def vertical(self, val):
         img_output = np.zeros(self.image.shape, dtype=self.image.dtype)
@@ -37,13 +49,6 @@ class Waves:
                     img_output[i, j] = 255
         cv.imshow(self.vertical_window_title, img_output)
 
-    def startHorizontal(self):
-        cv.namedWindow(self.horizontal_window_title)
-        cv.createTrackbar('value', self.horizontal_window_title, 0, 16,
-                          self.horizontal)
-        self.horizontal(0)
-        # cv.waitKey(0)
-
     def horizontal(self, val):
         img_output = np.zeros(self.image.shape, dtype=self.image.dtype)
         for i in range(self.height):
@@ -55,13 +60,6 @@ class Waves:
                 else:
                     img_output[i, j] = 255
         cv.imshow(self.horizontal_window_title, img_output)
-
-    def startBoth(self):
-        cv.namedWindow(self.both_window_title)
-        cv.createTrackbar('value', self.both_window_title, 0, 20,
-                          self.both)
-        self.both(0)
-        # cv.waitKey(0)
 
     def both(self, val):
         img_output = np.zeros(self.image.shape, dtype=self.image.dtype)

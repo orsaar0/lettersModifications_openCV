@@ -23,6 +23,7 @@ class Mirror:
         self.mirror(0)
         cv.waitKey(0)
 
+    # Simply take the pixels array and flip it
     def mirror(self, val):
         axis = shape(val)
         imp_output = np.flip(self.image, axis=axis)

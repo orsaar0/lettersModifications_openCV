@@ -1,4 +1,1 @@
 # lettersModifications_openCV
-SUBMITTED: 
-NIV DAGAN 205438203 
-OR SAAR 205476369
